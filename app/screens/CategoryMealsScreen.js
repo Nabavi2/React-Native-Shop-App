@@ -9,17 +9,13 @@ function CategoryMealsScreen(props) {
   return (
     <View style={styles.container}>
       <Text>This is the category meal screen.</Text>
-      <Text>
-        {"---->"}
-        {cate.title}
-        {"<----"}
-      </Text>
-      <Button
+      <Text>{cate.title}</Text>
+      {/* <Button
         title="go to meal detail"
         onPress={() => {
           props.navigation.navigate({ routeName: "MealDetail" });
         }}
-      />
+      /> */}
     </View>
   );
 }
@@ -27,7 +23,7 @@ function CategoryMealsScreen(props) {
 CategoryMealsScreen.navigationOptions = (navigationData) => {
   const cateId = navigationData.navigation.getParam("categoryId");
   const cate = CATEGORIES.find((item) => item.id === cateId);
-  
+
   return {
     headerTitle: cate.title,
   };
