@@ -1,34 +1,41 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { enableScreens } from "react-native-screens";
+import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import MealsNavigator from "./app2/navigation/MealsNavigator";
 
-import MealsNavigator from "./app/navigation/MealsNavigator";
-export default function App() {
-  const fetchFonts = () => {
-    return Font.loadAsync({
-      "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-      "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-    });
-  };
+enableScreens();
 
-  if (!dataLoaded) {
+const fetchFont = () => {
+  Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+};
+
+function App() {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  if (!fontLoaded) {
     return (
       <AppLoading
-        onError={(error) => console.log(error)}
-        startAsync={fetchFonts}
-        onFinish={() => setDataLoaded(true)}
+        startAsync={fetchFont}
+        onFinish={setFontLoaded(true)}
+        onError={(err) => console.log(err)}
       />
     );
   }
+
   return <MealsNavigator />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
 });
+
+export default App;

@@ -1,20 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
 
-const FiltersScreen = props => {
+function FiltersScreen(props) {
   return (
-    <View style={styles.screen}>
-      <Text>The Filters Screen!</Text>
+    <View>
+      <Text>This is the filter screen.</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+  container: {},
 });
 
 export default FiltersScreen;

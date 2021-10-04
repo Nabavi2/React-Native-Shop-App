@@ -1,25 +1,44 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text, Button } from "react-native";
+import Colors from "../constants/Colors";
+import { CATEGORIES } from "../data/dummy-data";
 
-const CategoryMealScreen = props => {
+function CategoryMealsScreen(props) {
+  const cateId = props.navigation.getParam("categoryId");
+  const cate = CATEGORIES.find((item) => item.id === cateId);
   return (
-    <View style={styles.screen}>
-      <Text>The Category Meal Screen!</Text>
-      <Button title="Go to Details" onPress={() => {
-          props.navigation.navigate({
-              routeName: 'MealDetail'
-          });
-      }} />
+    <View style={styles.container}>
+      <Text>This is the category meal screen.</Text>
+      <Text>
+        {"---->"}
+        {cate.title}
+        {"<----"}
+      </Text>
+      <Button
+        title="go to meal detail"
+        onPress={() => {
+          props.navigation.navigate({ routeName: "MealDetail" });
+        }}
+      />
     </View>
   );
+}
+
+CategoryMealsScreen.navigationOptions = (navigationData) => {
+  const cateId = navigationData.navigation.getParam("categoryId");
+  const cate = CATEGORIES.find((item) => item.id === cateId);
+  
+  return {
+    headerTitle: cate.title,
+  };
 };
 
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
-export default CategoryMealScreen;
+export default CategoryMealsScreen;
