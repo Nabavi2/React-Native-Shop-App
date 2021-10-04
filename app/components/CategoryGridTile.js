@@ -9,12 +9,7 @@ import {
 } from "react-native";
 
 const CategoryGridTile = (props) => {
-  // let TouchableCmp = TouchableOpacity;
-
-  // if (Platform.OS === 'android' && Platform.Version >= 21) {
-  //   TouchableCmp = TouchableNativeFeedback;
-  // }
-  return (
+ r return (
     <View style={styles.gridItem}>
       <TouchableNativeFeedback style={{ flex: 1 }} onPress={props.onSelect}>
         <View
