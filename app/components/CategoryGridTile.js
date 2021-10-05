@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 const CategoryGridTile = (props) => {
- r return (
+  return (
     <View style={styles.gridItem}>
       <TouchableNativeFeedback style={{ flex: 1 }} onPress={props.onSelect}>
         <View
