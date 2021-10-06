@@ -1,16 +1,13 @@
 import React from "react";
-import { StyleSheet, FlatList, View } from "react-native";
-import MealItem from "../components/MealItem";
+import { View, StyleSheet, FlatList } from "react-native";
+import MealItem from "./MealItem";
+
 function MealList(props) {
   const renderMealItem = (itemData) => {
     return (
       <MealItem
-        title={itemData.item.title}
-        image={itemData.item.imageUrl}
-        duration={itemData.item.duration}
-        affordability={itemData.item.affordability}
-        complexity={itemData.item.complexity}
-        onSelectedMeal={() => {
+        meal={itemData.item}
+        onSelectMeal={() => {
           props.navigation.navigate({
             routeName: "MealDetail",
             params: {
@@ -21,23 +18,25 @@ function MealList(props) {
       />
     );
   };
+
   return (
-    <View style={styles.listContainer}>
+    <View style={styles.container}>
       <FlatList
         data={props.listData}
+        keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
-        keyExtractor={(item) => item.id}
         style={{ width: "100%" }}
       />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-  listContainer: {
+  container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
+    padding: 15,
   },
 });
 

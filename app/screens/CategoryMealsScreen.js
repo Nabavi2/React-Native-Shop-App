@@ -2,6 +2,8 @@ import React from "react";
 
 import Colors from "../constants/Colors";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 import MealItem from "../components/MealItem";
 import MealList from "../components/MealList";
 function CategoryMealsScreen(props) {
@@ -13,12 +15,20 @@ function CategoryMealsScreen(props) {
   return <MealList listData={desplayMeals} navigation={props.navigation} />;
 }
 
-CategoryMealsScreen.navigationOptions = (navigationData) => {
-  const cateId = navigationData.navigation.getParam("categoryId");
-  const cate = CATEGORIES.find((item) => item.id === cateId);
-
+CategoryMealsScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: cate.title,
+    headerTitle: "Meals Screen",
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 

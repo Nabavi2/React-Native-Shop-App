@@ -7,27 +7,27 @@ import {
   ImageBackground,
 } from "react-native";
 
-const MealItem = (props) => {
+const MealItem = ({ meal, onSelectMeal }) => {
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity onPress={props.onSelectMeal}>
+      <TouchableOpacity onPress={onSelectMeal}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground
-              source={{ uri: props.image }}
+              source={{ uri: meal.imageUrl }}
               style={styles.bgImage}
             >
               <View style={styles.titleContainer}>
                 <Text style={styles.title} numberOfLines={1}>
-                  {props.title}
+                  {meal.title}
                 </Text>
               </View>
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text>{props.duration}m</Text>
-            <Text>{props.complexity.toUpperCase()}</Text>
-            <Text>{props.affordability.toUpperCase()}</Text>
+            <Text>{meal.duration}m</Text>
+            <Text>{meal.complexity.toUpperCase()}</Text>
+            <Text>{meal.affordability.toUpperCase()}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -39,10 +39,8 @@ const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: "100%",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "rgba(0,0,0,0.2)",
     borderRadius: 10,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
     overflow: "hidden",
     marginVertical: 10,
   },
