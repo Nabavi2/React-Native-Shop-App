@@ -18,6 +18,7 @@ const FavoritesScreen = (props) => {
   return <MealList listData={favMeals} navigation={props.navigation} />;
 };
 FavoritesScreen.navigationOptions = (navData) => {
+  const mealId = navData.navigation.getParam("favoriteId");
   return {
     headerTitle: "Your Favorites",
     headerLeft: (
