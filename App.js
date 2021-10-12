@@ -7,12 +7,17 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import ShopNavigator from "./app/navigation/ShopNavigator";
 import ProductReducer from "./app/store/reducers/products";
-
+// import * as cartReducer from "./app/store/reducers/cart";
+import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
+import ordersReducer from "./app/store/reducers/orders";
+
 enableScreens();
 
 const rootReducer = combineReducers({
   products: ProductReducer,
+  cart: cartReducer,
+  orders: ordersReducer,
 });
 
 const store = createStore(rootReducer);
@@ -39,7 +44,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator/>
+      <ShopNavigator />
     </Provider>
   );
 }
