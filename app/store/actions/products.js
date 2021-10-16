@@ -8,27 +8,33 @@ export const SET_PRODUCTS = "SET_PRODUCTS";
 export const fetchProducts = () => {
   return async (dispatch) => {
     // any async code you want!
-    const response = await fetch(
-      "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/products.json"
-    );
-
-    const resData = await response.json();
-    const loadedProducts = [];
-
-    for (const key in resData) {
-      loadedProducts.push(
-        new Product(
-          key,
-          "u1",
-          resData[key].title,
-          resData[key].imageUrl,
-          resData[key].description,
-          resData[key].price
-        )
+    try {
+      const response = await fetch(
+        "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/products.json"
       );
-    }
+      if (!response.ok) {
+        throw new Error("Somthing is wrong !");
+      }
+      const resData = await response.json();
 
-    dispatch({ type: SET_PRODUCTS, products: loadedProducts });
+      const loadedProducts = [];
+
+      for (const key in resData) {
+        loadedProducts.push(
+          new Product(
+            key,
+            "u1",
+            resData[key].title,
+            resData[key].imageUrl,
+            resData[key].description,
+            resData[key].price
+          )
+        );
+      }
+      dispatch({ type: SET_PRODUCTS, products: loadedProducts });
+    } catch (err) {
+      throw err;
+    }
   };
 };
 
@@ -39,6 +45,7 @@ export const deleteProduct = (productId) => {
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch) => {
     // any async code you want!
+
     const response = await fetch(
       "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/products.json",
       {
