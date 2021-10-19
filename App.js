@@ -5,13 +5,14 @@ import { enableScreens } from "react-native-screens";
 import AppLoading from "expo-app-loading";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import ShopNavigator from "./app/navigation/ShopNavigator";
 import ProductReducer from "./app/store/reducers/products";
 // import * as cartReducer from "./app/store/reducers/cart";
 import ReduxThunk from "redux-thunk";
 import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
+import authReducer from "./app/store/reducers/auth";
 import ordersReducer from "./app/store/reducers/orders";
+import NavigationContainer from "./app/navigation/NavigationContainer";
 
 enableScreens();
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   products: ProductReducer,
   cart: cartReducer,
   orders: ordersReducer,
+  auth: authReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -45,7 +47,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   );
 }

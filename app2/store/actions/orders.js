@@ -1,20 +1,16 @@
 import Order from "../../models/order";
-
 export const ADD_ORDER = "ADD_ORDER";
 export const SET_ORDERS = "SET_ORDERS";
 
 export const fetchOrders = () => {
-  return async (dispatch, getState) => {
-    const userId = getState().auth.userId;
+  return async (dispatch) => {
     try {
       const response = await fetch(
-        `https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/orders/${userId}.json`
+        "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/orders/u1.json"
       );
-
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        throw new Error("Somthing is wrong !");
       }
-
       const resData = await response.json();
       const loadedOrders = [];
 
@@ -34,14 +30,11 @@ export const fetchOrders = () => {
     }
   };
 };
-
 export const addOrder = (cartItems, totalAmount) => {
-  return async (dispatch, getState) => {
-    const token = getState().auth.token;
-    const userId = getState().auth.userId;
+  return async (dispatch) => {
     const date = new Date();
     const response = await fetch(
-      `https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/orders/${userId}.json?auth=${token}`,
+      "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/orders/u1.json",
       {
         method: "POST",
         headers: {
@@ -54,13 +47,10 @@ export const addOrder = (cartItems, totalAmount) => {
         }),
       }
     );
-
     if (!response.ok) {
-      throw new Error("Something went wrong!");
+      throw new Error("Something went wrong");
     }
-
     const resData = await response.json();
-
     dispatch({
       type: ADD_ORDER,
       orderData: {
