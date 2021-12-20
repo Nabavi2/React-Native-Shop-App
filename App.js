@@ -12,11 +12,7 @@ import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
 import authReducer from "./app/store/reducers/auth";
 import ordersReducer from "./app/store/reducers/orders";
-<<<<<<< HEAD
 import AppNavigator from "./app/navigation/AppNavigator";
-=======
-import NavigationContainer from "./app/navigation/NavigationContainer";
->>>>>>> 6bf28ab3ca46800b6484c5d89dcdeeabfc0358a4
 
 enableScreens();
 
