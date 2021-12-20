@@ -8,7 +8,6 @@ export const SET_PRODUCTS = "SET_PRODUCTS";
 export const fetchProducts = () => {
   try {
     return async (dispatch, getState) => {
-      console.log("helllllooo");
       const userId = getState().auth.userId;
       const response = await fetch(
         "https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/producst.json"
@@ -30,7 +29,6 @@ export const fetchProducts = () => {
             resData[key].price
           )
         );
-        console.log();
       }
       dispatch({
         type: SET_PRODUCTS,
