@@ -11,7 +11,6 @@ function SplashScreen(props) {
     const tryLogin = async () => {
       const userData = await AsyncStorage.getItem("userData");
       if (!userData) {
-        // props.navigation.navigate("Auth");
         dispatch(didTryAutoLoginUser());
         return;
       }
@@ -25,8 +24,6 @@ function SplashScreen(props) {
       }
 
       const expiryTime = expDate.getTime() - new Date().getTime();
-
-      // props.navigation.navigate("Shop");
       dispatch(authenticate(token, userId, expiryTime));
     };
 
