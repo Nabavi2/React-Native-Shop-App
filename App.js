@@ -2,20 +2,28 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 
 import { enableScreens } from "react-native-screens";
-import MealsNavigator from "./app/navigation/MealsNavigator";
 import AppLoading from "expo-app-loading";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-
-import MealReducer from "./app/store/reducer/Meal";
+import ProductReducer from "./app/store/reducers/products";
+// import * as cartReducer from "./app/store/reducers/cart";
+import ReduxThunk from "redux-thunk";
+import cartReducer from "./app/store/reducers/cart";
+import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
+import authReducer from "./app/store/reducers/auth";
+import ordersReducer from "./app/store/reducers/orders";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 enableScreens();
 
 const rootReducer = combineReducers({
-  meals: MealReducer,
+  products: ProductReducer,
+  cart: cartReducer,
+  orders: ordersReducer,
+  auth: authReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -39,7 +47,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <MealsNavigator />
+      <AppNavigator />
     </Provider>
   );
 }

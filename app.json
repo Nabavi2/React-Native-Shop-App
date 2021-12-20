@@ -1,5 +1,12 @@
 {
   "expo": {
+    "plugins": [
+      ["expo-notifications", {
+        "color": "#ffffff",
+        "sounds": ["./local/assets/mix.wav"],
+        "mode": "production"
+      }]
+    ],
     "name": "guess-game",
     "slug": "guess-game",
     "version": "1.0.0",
@@ -20,6 +27,7 @@
       "supportsTablet": true
     },
     "android": {
+      "useNextNotificationsApi": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
