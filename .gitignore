@@ -1,6 +1,11 @@
 node_modules/
 .expo/
+.expo-shared/
+.vscode/
+dist/
 npm-debug.*
+*yarn.lock
+*package-lock.json
 *.jks
 *.p8
 *.p12
