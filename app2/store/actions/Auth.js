@@ -109,7 +109,6 @@ export const loginUser = (email, password) => {
       throw new Error(message);
     }
     const resData = await response.json();
-    console.log(resData);
     dispatch(
       authenticate(
         resData.idToken,
