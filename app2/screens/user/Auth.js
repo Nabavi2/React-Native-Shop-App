@@ -73,7 +73,6 @@ const AuthScreen = (props) => {
     setIsLoading(true);
     try {
       await dispatch(action);
-      // props.navigation.navigate("Shop");
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
@@ -99,11 +98,7 @@ const AuthScreen = (props) => {
   );
 
   return (
-    <KeyboardAvoidingView
-      // behavior="padding"
-      keyboardVerticalOffset={50}
-      style={styles.screen}
-    >
+    <KeyboardAvoidingView keyboardVerticalOffset={50} style={styles.screen}>
       <LinearGradient colors={["#ffedff", "#ffe3ff"]} style={styles.gradient}>
         <Card style={styles.authContainer}>
           <ScrollView>
