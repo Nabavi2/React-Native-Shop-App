@@ -7,7 +7,6 @@ import SplashScreen from "../screens/SplashScreen";
 function AppNavigator(props) {
   const isAuth = useSelector((state) => !!state.auth.token);
   const didTryAL = useSelector((state) => state.auth.didTryAL);
-
   return (
     <NavigationContainer>
       {isAuth && <ShopNavigator />}

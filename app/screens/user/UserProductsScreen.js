@@ -102,7 +102,6 @@ export const UserProductsScreenOptions = (navData) => {
     ),
   };
 };
-
 const styles = StyleSheet.create({
   centered: {
     flex: 1,
