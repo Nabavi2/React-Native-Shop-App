@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-
 import Input from "../../components/UI/Input";
 import Card from "../../components/UI/Card";
 import Colors from "../../constants/Colors";
@@ -73,7 +72,6 @@ const AuthScreen = (props) => {
     setIsLoading(true);
     try {
       await dispatch(action);
-      // props.navigation.navigate("Shop");
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
@@ -100,7 +98,7 @@ const AuthScreen = (props) => {
 
   return (
     <KeyboardAvoidingView
-      // behavior="padding"
+      behavior="padding"
       keyboardVerticalOffset={50}
       style={styles.screen}
     >
