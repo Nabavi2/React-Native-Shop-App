@@ -1,18 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { ShopNavigator, AuthNavigation } from "./ShopNavigator";
-import StartUpScreen from "../screens/user/StartUpScreen";
-const AppNavigator = (props) => {
+import { AuthNavigator, ShopNavigator } from "./ShopNavigator";
+import SplashScreen from "../screens/SplashScreen";
+
+function AppNavigator(props) {
   const isAuth = useSelector((state) => !!state.auth.token);
-  const didTryAuthoLogin = useSelector((state) => !!state.auth.didTryAuthoLogin);
+  const didTryAL = useSelector((state) => state.auth.didTryAL);
+  console.log(isAuth);
+  console.log(didTryAL);
+
   return (
     <NavigationContainer>
       {isAuth && <ShopNavigator />}
-      {!isAuth && didTryAuthoLogin && <AuthNavigation />}
-      {!isAuth && !didTryAuthoLogin && <StartUpScreen />}
+      {!isAuth && didTryAL && <AuthNavigator />}
+      {!isAuth && !didTryAL && <SplashScreen />}
     </NavigationContainer>
   );
-};
+}
 
 export default AppNavigator;

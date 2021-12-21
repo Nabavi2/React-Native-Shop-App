@@ -10,7 +10,7 @@ import ProductReducer from "./app/store/reducers/products";
 import ReduxThunk from "redux-thunk";
 import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
-import authReducer from "./app/store/reducers/auth";
+import authReducer from "./app/store/reducers/Auth";
 import ordersReducer from "./app/store/reducers/orders";
 import AppNavigator from "./app/navigation/AppNavigator";
 

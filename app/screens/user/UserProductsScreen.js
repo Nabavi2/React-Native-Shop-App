@@ -36,13 +36,15 @@ const UserProductsScreen = (props) => {
       },
     ]);
   };
+
   if (userProducts.length === 0) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text> No products fount may be start add new! </Text>
+      <View style={styles.centered}>
+        <Text>No products found, maybe try adding some!</Text>
       </View>
     );
   }
+
   return (
     <FlatList
       data={userProducts}
@@ -74,7 +76,7 @@ const UserProductsScreen = (props) => {
   );
 };
 
-export const screenUserOptions = (navData) => {
+export const UserProductsScreenOptions = (navData) => {
   return {
     headerTitle: "Your Products",
     headerLeft: () => (
@@ -101,5 +103,13 @@ export const screenUserOptions = (navData) => {
     ),
   };
 };
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default UserProductsScreen;

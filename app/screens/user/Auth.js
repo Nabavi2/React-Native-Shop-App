@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import {
   ScrollView,
   View,
@@ -8,16 +8,15 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { useDispatch } from "react-redux";
 
 import Input from "../../components/UI/Input";
 import Card from "../../components/UI/Card";
 import Colors from "../../constants/Colors";
-import * as authActions from "../../store/actions/auth";
+import { LinearGradient } from "expo-linear-gradient";
+import { useDispatch } from "react-redux";
+import { signupUser, loginUser } from "../../store/actions/Auth";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
-
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
     const updatedValues = {
@@ -42,10 +41,10 @@ const formReducer = (state, action) => {
 };
 
 const AuthScreen = (props) => {
-  const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const [isSingup, setIsSingup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -58,35 +57,34 @@ const AuthScreen = (props) => {
     },
     formIsValid: false,
   });
-  useEffect(() => {
-    if (error) {
-      Alert.alert("An error occurred", error, [{ text: "Okey" }]);
-    }
-  }, [error]);
 
-  const authHandler = async () => {
-    let action;
-    if (isSignup) {
-      action = authActions.signup(
-        formState.inputValues.email,
-        formState.inputValues.password
-      );
-    } else {
-      action = authActions.login(
+  const submitForm = async () => {
+    let action = signupUser(
+      formState.inputValues.email,
+      formState.inputValues.password
+    );
+
+    if (!isSingup) {
+      action = loginUser(
         formState.inputValues.email,
         formState.inputValues.password
       );
     }
-    setError(null);
     setIsLoading(true);
     try {
       await dispatch(action);
       // props.navigation.navigate("Shop");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("An error occured!", error, [{ text: "Okay" }]);
+    }
+  }, [error]);
 
   const inputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
@@ -101,7 +99,11 @@ const AuthScreen = (props) => {
   );
 
   return (
-    <KeyboardAvoidingView keyboardVerticalOffset={50} style={styles.screen}>
+    <KeyboardAvoidingView
+      // behavior="padding"
+      keyboardVerticalOffset={50}
+      style={styles.screen}
+    >
       <LinearGradient colors={["#ffedff", "#ffe3ff"]} style={styles.gradient}>
         <Card style={styles.authContainer}>
           <ScrollView>
@@ -133,18 +135,18 @@ const AuthScreen = (props) => {
                 <ActivityIndicator size="small" color={Colors.primary} />
               ) : (
                 <Button
-                  title={isSignup ? "Sign Up" : "Login"}
+                  title={isSingup ? "Sign up" : "Login"}
                   color={Colors.primary}
-                  onPress={authHandler}
+                  onPress={submitForm}
                 />
               )}
             </View>
             <View style={styles.buttonContainer}>
               <Button
-                title={`Switch to ${isSignup ? "Login" : "Sign Up"}`}
+                title={`Switch to ${isSingup ? "login" : "sign up"}`}
                 color={Colors.accent}
                 onPress={() => {
-                  setIsSignup((prevState) => !prevState);
+                  setIsSingup((perv) => !perv);
                 }}
               />
             </View>
@@ -155,7 +157,7 @@ const AuthScreen = (props) => {
   );
 };
 
-AuthScreen.navigationOptions = {
+export const AuthScreenOptions = {
   headerTitle: "Authenticate",
 };
 

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 class Order {
   constructor(id, items, totalAmount, date) {
@@ -16,7 +16,7 @@ class Order {
     //       hour: '2-digit',
     //       minute: '2-digit'
     //   });
-    return moment(this.date).format('MMMM Do YYYY, hh:mm');
+    return moment(this.date).format("MMMM Do YYYY, hh:mm");
   }
 }
 

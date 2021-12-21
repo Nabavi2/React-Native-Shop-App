@@ -6,21 +6,19 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const SET_PRODUCTS = "SET_PRODUCTS";
 
 export const fetchProducts = () => {
-  return async (dispatch, getState) => {
-    const userId = getState().auth.userId;
-    // any async code you want!
-    try {
+  try {
+    return async (dispatch, getState) => {
+      console.log("helllllooo");
+      const userId = getState().auth.userId;
       const response = await fetch(
-        "https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/malls.json"
+        "https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/producst.json"
       );
-
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        throw new Error("An error occured!");
       }
-
       const resData = await response.json();
+      console.log(resData);
       const loadedProducts = [];
-
       for (const key in resData) {
         loadedProducts.push(
           new Product(
@@ -32,32 +30,30 @@ export const fetchProducts = () => {
             resData[key].price
           )
         );
+        console.log();
       }
-
       dispatch({
         type: SET_PRODUCTS,
         products: loadedProducts,
-        userProducts: loadedProducts.filter((prod) => prod.ownerId === userId),
+        userProducts: loadedProducts.filter((item) => item.ownerId === userId),
       });
-    } catch (err) {
-      // send to custom analytics server
-      throw err;
-    }
-  };
+    };
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const deleteProduct = (productId) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/malls/${productId}.json?auth=${token}`,
+      `https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/producst/${productId}.json?auth=${token}`,
       {
         method: "DELETE",
       }
     );
-
     if (!response.ok) {
-      throw new Error("Something went wrong!");
+      throw new Error("Some thing went wrong!");
     }
     dispatch({ type: DELETE_PRODUCT, pid: productId });
   };
@@ -65,11 +61,11 @@ export const deleteProduct = (productId) => {
 
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
+    // Here is our async code...
     const token = getState().auth.token;
     const userId = getState().auth.userId;
-    // any async code you want!
     const response = await fetch(
-      `https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/malls.json?auth=${token}`,
+      `https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/producst.json?auth=${token}`,
       {
         method: "POST",
         headers: {
@@ -84,18 +80,17 @@ export const createProduct = (title, description, imageUrl, price) => {
         }),
       }
     );
-
     const resData = await response.json();
 
     dispatch({
       type: CREATE_PRODUCT,
       productData: {
         id: resData.name,
+        ownerId: userId,
         title,
         description,
         imageUrl,
         price,
-        ownerId: userId,
       },
     });
   };
@@ -104,25 +99,24 @@ export const createProduct = (title, description, imageUrl, price) => {
 export const updateProduct = (id, title, description, imageUrl) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
+    const userId = getState().auth.userId;
     const response = await fetch(
-      `https://rn-shop-app-fd49a-default-rtdb.asia-southeast1.firebasedatabase.app/malls/${id}.json?auth=${token}`,
+      `https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/producst/${userId}/${id}.json?auth=${token}`,
       {
         method: "PATCH",
-        headers: {
+        header: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title,
-          description,
           imageUrl,
+          description,
         }),
       }
     );
-
     if (!response.ok) {
-      throw new Error("Something went wrong!");
+      throw new Error("Some thing went wrong!");
     }
-
     dispatch({
       type: UPDATE_PRODUCT,
       pid: id,
