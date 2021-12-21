@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-
 import HeaderButton from "../../components/UI/HeaderButton";
 import OrderItem from "../../components/shop/OrderItem";
 import { useDispatch } from "react-redux";
@@ -39,7 +38,7 @@ const OrdersScreen = (props) => {
   if (orders.length === 0) {
     return (
       <View style={styles.centered}>
-        <Text>No order found, maybe try adding some!</Text>
+        <Text>No order found, maybe try adding some products!</Text>
       </View>
     );
   }
