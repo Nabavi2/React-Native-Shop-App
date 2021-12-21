@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-
 import HeaderButton from "../../components/UI/HeaderButton";
 import ProductItem from "../../components/shop/ProductItem";
 import Colors from "../../constants/Colors";
@@ -40,7 +39,7 @@ const UserProductsScreen = (props) => {
   if (userProducts.length === 0) {
     return (
       <View style={styles.centered}>
-        <Text>No products found, maybe try adding some!</Text>
+        <Text>No products found, maybe try adding some product!</Text>
       </View>
     );
   }

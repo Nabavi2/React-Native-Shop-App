@@ -13,7 +13,6 @@ function SplashScreen(props) {
       if (!userData) {
         dispatch(didTryAutoLoginUser());
         props.navigation.navigate("Auth");
-
         return;
       }
       const transformedData = JSON.parse(userData);
@@ -25,9 +24,7 @@ function SplashScreen(props) {
 
         return;
       }
-
       const expiryTime = expDate.getTime() - new Date().getTime();
-
       // props.navigation.navigate("Shop");
       dispatch(authenticate(token, userId, expiryTime));
     };
