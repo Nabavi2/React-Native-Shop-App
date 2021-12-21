@@ -5,7 +5,6 @@ export const SET_ORDERS = "SET_ORDERS";
 export const fetchOrders = () => {
   try {
     return async (dispatch, getState) => {
-      console.log("helllllooo");
       const userId = getState().auth.userId;
       const response = await fetch(
         `https://shopapp-547f8-default-rtdb.asia-southeast1.firebasedatabase.app/orders/${userId}.json`
@@ -14,7 +13,6 @@ export const fetchOrders = () => {
         throw new Error("An error occured!");
       }
       const resData = await response.json();
-      console.log("this is the response data" + resData);
       const loadedOrders = [];
       for (const key in resData) {
         loadedOrders.push(

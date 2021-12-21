@@ -45,7 +45,6 @@ export const signupUser = (email, password) => {
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           email,
           password,
@@ -87,7 +86,6 @@ export const loginUser = (email, password) => {
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           email,
           password,
