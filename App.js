@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import * as Font from "expo-font";
-
 import { enableScreens } from "react-native-screens";
 import AppLoading from "expo-app-loading";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import ProductReducer from "./app/store/reducers/products";
-// import * as cartReducer from "./app/store/reducers/cart";
 import ReduxThunk from "redux-thunk";
 import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
