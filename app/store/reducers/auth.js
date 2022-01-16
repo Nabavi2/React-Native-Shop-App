@@ -1,11 +1,10 @@
-import { AUTHENTICATE, DID_TRY_AL, LOGOUT } from "../actions/auth";
+import { AUTHENTICATE, DID_TRY_AL, LOGOUT } from "../actions/Auth";
 
 const initialState = {
   token: null,
   userId: null,
   didTryAL: false,
 };
-
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTHENTICATE:

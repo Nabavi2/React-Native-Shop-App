@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-
 import Colors from "../../constants/Colors";
 import CartItem from "../../components/shop/CartItem";
 import Card from "../../components/UI/Card";
