@@ -5,7 +5,6 @@ import {
   SET_PRODUCTS,
 } from "../actions/products";
 import Product from "../../models/product";
-import PRODUCTS from "../../data/dummy-data";
 
 const initialState = {
   availableProducts: [],

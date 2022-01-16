@@ -16,7 +16,6 @@ export const fetchProducts = () => {
         throw new Error("An error occured!");
       }
       const resData = await response.json();
-      console.log(resData);
       const loadedProducts = [];
       for (const key in resData) {
         loadedProducts.push(

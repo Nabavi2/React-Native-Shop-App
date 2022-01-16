@@ -7,10 +7,12 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/UI/HeaderButton";
+import { MaterialIcons } from "@expo/vector-icons";
 import ProductItem from "../../components/shop/ProductItem";
 import Colors from "../../constants/Colors";
 import * as productsActions from "../../store/actions/products";
@@ -57,18 +59,21 @@ const UserProductsScreen = (props) => {
             editProductHandler(itemData.item.id);
           }}
         >
-          <Button
-            color={Colors.primary}
-            title="Edit"
+          <TouchableOpacity
+            style={styles.options}
             onPress={() => {
               editProductHandler(itemData.item.id);
             }}
-          />
-          <Button
-            color={Colors.primary}
-            title="Delete"
+          >
+            <MaterialIcons name="edit" size={26} color="white" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.options}
             onPress={deleteHandler.bind(this, itemData.item.id)}
-          />
+          >
+            <MaterialIcons name="delete" size={26} color="white" />
+          </TouchableOpacity>
         </ProductItem>
       )}
     />
@@ -107,6 +112,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  options: {
+    backgroundColor: Colors.primary,
+    paddingVertical: 3.5,
+    paddingHorizontal: 5,
+    borderRadius: 2,
+    marginHorizontal: 5,
   },
 });
 

@@ -1,37 +1,29 @@
 {
   "expo": {
-    "plugins": [
-      ["expo-notifications", {
-        "color": "#ffffff",
-        "sounds": ["./local/assets/mix.wav"],
-        "mode": "production"
-      }]
-    ],
-    "name": "guess-game",
-    "slug": "guess-game",
+    "name": "ShopApp",
+    "slug": "ShopApp",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ico.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/sho.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hamid313.ShopApp"
     },
     "android": {
-      "useNextNotificationsApi": true,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/ico.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.hamid313.ShopApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

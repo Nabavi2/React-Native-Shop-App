@@ -8,12 +8,14 @@ import ProductReducer from "./app/store/reducers/products";
 import ReduxThunk from "redux-thunk";
 import cartReducer from "./app/store/reducers/cart";
 import ProductsOverviewScreen from "./app/screens/shop/ProductsOverviewScreen";
-import authReducer from "./app/store/reducers/Auth";
+import authReducer from "./app/store/reducers/auth";
 import ordersReducer from "./app/store/reducers/orders";
 import AppNavigator from "./app/navigation/AppNavigator";
+import { I18nManager } from "react-native";
 
 enableScreens();
-
+I18nManager.allowRTL(false);
+I18nManager.forceRTL(false);
 const rootReducer = combineReducers({
   products: ProductReducer,
   cart: cartReducer,

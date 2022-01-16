@@ -1,3 +1,4 @@
+import { Entypo } from "@expo/vector-icons";
 import React from "react";
 import {
   View,
@@ -27,12 +28,23 @@ const ProductItem = (props) => {
               <Image style={styles.image} source={{ uri: props.image }} />
             </View>
             <View style={styles.details}>
-              <Text style={styles.title}>{props.title}</Text>
-              <Text style={styles.price}>
-                ${parseFloat(props.price).toFixed(2)}
-              </Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Entypo name="price-ribbon" size={24} color="grey" />
+                <Text style={styles.title}>{props.title}</Text>
+              </View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Entypo
+                  name="price-tag"
+                  size={24}
+                  color="grey"
+                  style={{ paddingRight: 3 }}
+                />
+                <Text style={styles.price}>
+                  ${parseFloat(props.price).toFixed(2)}
+                </Text>
+              </View>
+              <View style={styles.actions}>{props.children}</View>
             </View>
-            <View style={styles.actions}>{props.children}</View>
           </View>
         </TouchableCmp>
       </View>
@@ -42,7 +54,7 @@ const ProductItem = (props) => {
 
 const styles = StyleSheet.create({
   product: {
-    height: 300,
+    height: 250,
     margin: 20,
   },
   touchable: {
@@ -51,7 +63,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: "60%",
+    height: "80%",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     overflow: "hidden",
@@ -61,9 +73,12 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   details: {
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
     height: "17%",
     padding: 10,
+    marginTop: 5,
   },
   title: {
     fontFamily: "open-sans-bold",
@@ -80,7 +95,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: "23%",
-    paddingHorizontal: 20,
   },
 });
 

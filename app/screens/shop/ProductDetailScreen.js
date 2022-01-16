@@ -6,6 +6,7 @@ import {
   Image,
   Button,
   StyleSheet,
+  ToastAndroid,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -28,6 +29,7 @@ const ProductDetailScreen = (props) => {
           title="Add to Cart"
           onPress={() => {
             dispatch(cartActions.addToCart(selectedProduct));
+            ToastAndroid.show("Added to cart.", 2);
           }}
         />
       </View>

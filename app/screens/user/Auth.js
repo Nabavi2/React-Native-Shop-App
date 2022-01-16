@@ -7,13 +7,15 @@ import {
   Button,
   ActivityIndicator,
   Alert,
+  Image,
+  Text,
 } from "react-native";
 import Input from "../../components/UI/Input";
 import Card from "../../components/UI/Card";
 import Colors from "../../constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch } from "react-redux";
-import { signupUser, loginUser } from "../../store/actions/Auth";
+import { signupUser, loginUser } from "../../store/actions/auth";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 const formReducer = (state, action) => {
@@ -98,11 +100,21 @@ const AuthScreen = (props) => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
+      // behavior="padding"
       keyboardVerticalOffset={50}
       style={styles.screen}
     >
       <LinearGradient colors={["#ffedff", "#ffe3ff"]} style={styles.gradient}>
+        <Text
+          style={{
+            color: "#f0247c",
+            marginBottom: 30,
+            fontSize: 48,
+            fontFamily: "open-sans-bold",
+          }}
+        >
+          Shop App
+        </Text>
         <Card style={styles.authContainer}>
           <ScrollView>
             <Input

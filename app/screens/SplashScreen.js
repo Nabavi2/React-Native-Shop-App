@@ -3,7 +3,7 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
-import { authenticate, didTryAutoLoginUser } from "../store/actions/Auth";
+import { authenticate, didTryAutoLoginUser } from "../store/actions/auth";
 
 function SplashScreen(props) {
   const dispatch = useDispatch();

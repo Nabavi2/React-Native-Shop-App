@@ -6,6 +6,8 @@ import {
   View,
   Pressable,
   Text,
+  TouchableOpacity,
+  Image,
 } from "react-native";
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
@@ -28,13 +30,13 @@ import EditProductScreen, {
 import Colors from "../constants/Colors";
 import AuthScreen, { AuthScreenOptions } from "../screens/user/Auth";
 import { useDispatch } from "react-redux";
-import { logout } from "../store/actions/Auth";
+import { logout } from "../store/actions/auth";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
   createDrawerNavigator,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import authActions from "../store/actions/Auth";
+import authActions from "../store/actions/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const defaultNavOptions = {
@@ -113,10 +115,14 @@ export const ShopNavigator = () => {
       }}
       drawerContent={(props) => {
         return (
-          <View style={{ flex: 1, paddingTop: 20 }}>
+          <View style={{ flex: 1 }}>
             <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
+              <Image
+                source={require("../../assets/eco.jpg")}
+                style={{ width: "100%", height: 200, marginBottom: 10 }}
+              />
               <DrawerItemList {...props} />
-              <Pressable
+              <TouchableOpacity
                 style={{
                   width: "55%",
                   height: 35,
@@ -128,7 +134,6 @@ export const ShopNavigator = () => {
                 onPress={async () => {
                   await dispatch(logout());
                   // props.navigation.navigate("Auth");
-                  await AsyncStorage.removeItem("userData");
                 }}
               >
                 <SimpleLineIcons
@@ -147,7 +152,7 @@ export const ShopNavigator = () => {
                 >
                   Logout
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </SafeAreaView>
           </View>
         );

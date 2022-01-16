@@ -7,6 +7,7 @@ import {
   Platform,
   ActivityIndicator,
   StyleSheet,
+  ToastAndroid,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -16,6 +17,7 @@ import ProductItem from "../../components/shop/ProductItem";
 import * as cartActions from "../../store/actions/cart";
 import * as productsActions from "../../store/actions/products";
 import Colors from "../../constants/Colors";
+import { FontAwesome } from "@expo/vector-icons";
 
 const ProductsOverviewScreen = (props) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -35,12 +37,12 @@ const ProductsOverviewScreen = (props) => {
     setIsRefreshing(false);
   }, [dispatch, setIsLoading, setError]);
 
-  useEffect(() => {
-    const unsubscribe = props.navigation.addListener("focus", loadProducts);
-    return () => {
-      unsubscribe();
-    };
-  });
+  // useEffect(() => {
+  //   const unsubscribe = props.navigation.addListener("focus", loadProducts);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // });
 
   useEffect(() => {
     setIsLoading(true);
@@ -98,18 +100,25 @@ const ProductsOverviewScreen = (props) => {
             selectItemHandler(itemData.item.id, itemData.item.title);
           }}
         >
-          <Button
+          {/* <Button
             color={Colors.primary}
             title="View Details"
             onPress={() => {
               selectItemHandler(itemData.item.id, itemData.item.title);
             }}
+          /> */}
+          <FontAwesome
+            name="cart-plus"
+            size={24}
+            color="grey"
+            style={{ marginRight: 5 }}
           />
           <Button
             color={Colors.primary}
             title="To Cart"
             onPress={() => {
               dispatch(cartActions.addToCart(itemData.item));
+              ToastAndroid.show("Added to cart.", 2);
             }}
           />
         </ProductItem>
@@ -119,6 +128,8 @@ const ProductsOverviewScreen = (props) => {
 };
 
 export const ProductsOverviewScreenOptions = (navData) => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartLeng = Object.keys(cartItems).length;
   return {
     headerTitle: "All Products",
     headerLeft: () => (
@@ -133,15 +144,37 @@ export const ProductsOverviewScreenOptions = (navData) => {
       </HeaderButtons>
     ),
     headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="Cart"
-          iconName={Platform.OS === "android" ? "md-cart" : "ios-cart"}
-          onPress={() => {
-            navData.navigation.navigate("Cart");
+      <View>
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Cart"
+            iconSize={26}
+            iconName={Platform.OS === "android" ? "md-cart" : "ios-cart"}
+            onPress={() => {
+              navData.navigation.navigate("Cart");
+            }}
+          />
+        </HeaderButtons>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "darkorange",
+            width: 14,
+            height: 14,
+            borderRadius: 7,
+            position: "absolute",
+            right: 6.5,
+            bottom: 0,
           }}
-        />
-      </HeaderButtons>
+        >
+          <Text
+            style={{ fontSize: 9, color: "white", fontFamily: "open-sans" }}
+          >
+            {cartLeng}
+          </Text>
+        </View>
+      </View>
     ),
   };
 };
