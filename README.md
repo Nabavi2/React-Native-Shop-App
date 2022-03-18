@@ -2,7 +2,7 @@
  
 This application developed for selling and buying online products. I used this technology and framework  for development of  this app : React Native(framework), React Native Elements(library), Firebase (for handalling requests) .
 
-Everyone can use this application for buying and selling thier products in the internet .(this application is for free)
+Everyone can use this application for buying and selling thier products in the internet .(this application is for free).
  
 ![login](https://user-images.githubusercontent.com/83859644/151345603-64dfbe76-988b-49a2-b2e1-4678806271ce.jpg)
 ![splash](https://user-images.githubusercontent.com/83859644/151345874-ff4a2139-824a-46b0-b3ff-a55f7c4d8498.jpg)
