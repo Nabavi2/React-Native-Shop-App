@@ -1,6 +1,6 @@
 # React Native Online Shop App
  
-This application developed for selling and buying online products. I used this technology and framework  for development of  this app : React Native(framework), React Native Elements(library), Firebase (for handalling requests) .
+This application developed for selling and buying online products. I used thesd technology and framework  for development of  this app : React Native(framework), React Native Elements(library), Firebase (for handalling requests) .
 
 Everyone can use this application for buying and selling thier products in the internet .(this application is for free).
  
